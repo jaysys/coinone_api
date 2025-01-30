@@ -171,17 +171,17 @@ if __name__ == "__main__":
     btc_balance = api.get_balance_by_currency('AI16Z')
     pp.pprint(btc_balance)
     
-    nonzero_balances = api.get_nonzero_balances()
-    pp.pprint(nonzero_balances)
-
     balances = api.get_balances(['KRW', 'BTC', 'SOL', 'ETH', 'USDC', 'AI16Z'])
     pp.pprint(balances)
 
-    currencies = ['KRW', 'BTC', 'SOL', 'ETH', 'AI16Z']     # Define the list of currencies to get the report for
-    report_df = api.get_report(currencies)
+    nonzero_balances = api.get_nonzero_balances()
+    pp.pprint(nonzero_balances)
+
+    nonezero_currencies = [item['currency'] for item in nonzero_balances]
+    print("잔액있는 코인들: ",nonezero_currencies)
+
+    report_df = api.get_report(nonezero_currencies)
     print(report_df)
-
-
 
 
 # end of code
